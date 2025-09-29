@@ -2,6 +2,8 @@
 
 A client application to interact with the SPaCial AI OCR Service hosted on Hugging Face Spaces.
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/YOUR_USERNAME/spacial-ocr-client)
+
 ## Features
 
 - 📝 Regular text detection (green bounding boxes)
@@ -10,7 +12,11 @@ A client application to interact with the SPaCial AI OCR Service hosted on Huggi
 - 🔄 Image rotation support
 - 🖼️ Interactive web interface with Gradio
 
-## Setup
+## Quick Deploy to Render
+
+Click the "Deploy to Render" button above to deploy this application instantly to Render's free tier.
+
+## Local Setup
 
 1. Install dependencies:
 ```bash
