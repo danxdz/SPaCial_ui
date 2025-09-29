@@ -58,7 +58,13 @@ def client_process_ocr(pil_img: Image.Image, mode: str = "fast", rotation: int =
         # 3. Process JSON Response
         result_data = response.json()
         
-        zones = result_data.get("zones", [])
+        # Handle different response formats
+        if isinstance(result_data, list):
+            # If response is directly a list of zones
+            zones = result_data
+        else:
+            # If response is a dict with zones key
+            zones = result_data.get("zones", [])
         
         # 4. Draw Bounding Boxes on Image
         draw_img = pil_img.copy()
@@ -66,10 +72,15 @@ def client_process_ocr(pil_img: Image.Image, mode: str = "fast", rotation: int =
         full_text_output = []
         
         for zone in zones:
-            text = zone.get("text", "")
-            confidence = zone.get("confidence", 0.0)
-            bbox = zone.get("bbox", {})
-            is_dimension = zone.get("is_dimension", False)
+            # Handle both dict and list zone formats
+            if isinstance(zone, dict):
+                text = zone.get("text", "")
+                confidence = zone.get("confidence", 0.0)
+                bbox = zone.get("bbox", {})
+                is_dimension = zone.get("is_dimension", False)
+            else:
+                # If zone is a list, skip it
+                continue
             
             # Text formatting for output
             prefix = "📐" if is_dimension else "📝"
@@ -77,9 +88,14 @@ def client_process_ocr(pil_img: Image.Image, mode: str = "fast", rotation: int =
             
             # Draw BBox
             if bbox:
-                # Get coordinates (x1, y1, x2, y2)
-                x1, y1 = bbox.get("x1", 0), bbox.get("y1", 0)
-                x2, y2 = bbox.get("x2", 0), bbox.get("y2", 0)
+                # Handle both dict and list bbox formats
+                if isinstance(bbox, dict):
+                    x1, y1 = bbox.get("x1", 0), bbox.get("y1", 0)
+                    x2, y2 = bbox.get("x2", 0), bbox.get("x2", 0)
+                elif isinstance(bbox, list) and len(bbox) >= 4:
+                    x1, y1, x2, y2 = bbox[0], bbox[1], bbox[2], bbox[3]
+                else:
+                    continue
                 
                 # Choose color: green for regular text, blue for dimensions
                 color = (0, 255, 0) if not is_dimension else (0, 0, 255)
