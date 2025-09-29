@@ -12,9 +12,39 @@ A client application to interact with the SPaCial AI OCR Service hosted on Huggi
 - 🔄 Image rotation support
 - 🖼️ Interactive web interface with Gradio
 
-## Quick Deploy to Render
+## 🚀 2-Step Deploy to Render
 
-Click the "Deploy to Render" button above to deploy this application instantly to Render's free tier.
+### Option 1: Quick Deploy Script
+```bash
+./quick-deploy.sh
+```
+This script will guide you through the 2-step process automatically.
+
+### Option 2: Manual 2-Step Process
+
+**Step 1: Push to GitHub**
+```bash
+# Initialize git (if not already done)
+git init
+git add .
+git commit -m "Deploy to Render"
+
+# Add your GitHub repository
+git remote add origin https://github.com/YOUR_USERNAME/spacial-ocr-client.git
+git branch -M main
+git push -u origin main
+```
+
+**Step 2: Deploy to Render**
+1. Go to [render.com](https://render.com)
+2. Click "New +" → "Web Service"
+3. Connect your GitHub repository
+4. Select your repository
+5. Render auto-detects settings from `render.yaml`
+6. Click "Deploy Web Service"
+
+### Option 3: One-Click Deploy
+Click the "Deploy to Render" button above (requires GitHub repository setup first).
 
 ## Local Setup
 
