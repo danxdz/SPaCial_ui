@@ -1,4 +1,5 @@
 # SPaCial OCR Client
+<img width="1495" height="735" alt="image" src="https://github.com/user-attachments/assets/138f8c9b-3ec6-402a-8493-b775866bc112" />
 
 A client application to interact with the SPaCial AI OCR Service hosted on Hugging Face Spaces.
 
