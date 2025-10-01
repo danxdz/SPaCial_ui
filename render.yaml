@@ -4,7 +4,7 @@ services:
     env: python
     plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: python client_app.py
+    startCommand: python app.py
     envVars:
       - key: GRADIO_SERVER_NAME
         value: 0.0.0.0
